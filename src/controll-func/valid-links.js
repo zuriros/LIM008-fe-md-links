@@ -29,6 +29,6 @@ export const validatingLinks = (pathArr) => {
   return Promise.all(getAllLinks);
 };
 
-// console.log(validatingLinks('C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src').then(sec => console.log(sec)));
+console.log(validatingLinks('C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src').then(sec => console.log(sec)));
 
  
