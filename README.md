@@ -30,8 +30,78 @@ interactuar con el sistema en sí, archivos, redes, ...
 En este proyecto nos alejamos un poco del navegador para construir un programa
 que se ejecute usando Node.js, donde aprenderemos sobre cómo interactuar con el
 sistema archivos, con el entorno (_proceso_, _env_, _stdin/stdout/stderr_), ...
+## Flujograma
 
-## Objetivos
+![flujograma](https://1.bp.blogspot.com/-1nUyJLTDcvw/XI_x_zDjLHI/AAAAAAAABb4/bQ4-ByLIWIQHYGHJ3eeTWdoi36SxSHaIACLcBGAs/s1600/Untitled%2BDiagram.png)
+
+## Instalación
+
+Para instalar esta librería debemos ejecutar el siguiente comando
+`npm install zuriros/md-links`
+
+## Uso en la línea de comandos
+
+El ejecutable podra realizarse de la siguiente manera a través de la terminal `md-links <path-to-file> [options]`.
+El usuario debe ingresar el módulo md-links solo despues la ruta de su archivo y la opción que desea ejecutar.
+
+#### Options
+
+##### `--validate`
+
+Si pasamos la opción `--validate`, el módulo debe hacer una petición HTTP para
+averiguar si el link funciona o no. Si el link resulta en una redirección a una
+URL que responde ok, entonces consideraremos el link como ok.
+Por ejemplo:
+
+```sh
+$ md-links ./some/example.md --validate
+./some/example.md http://algo.com/2/3/ ok 200 Link a algo
+./some/example.md https://otra-cosa.net/algun-doc.html fail 404 algún doc
+./some/example.md http://google.com/ ok 301 Google
+```
+
+Vemos que el _output_ en este caso incluye la palabra `ok` o `fail` después de
+la URL, así como el status de la respuesta recibida a la petición HTTP a dicha
+URL.
+
+##### `--stats`
+
+Si pasamos la opción `--stats` el output (salida) será un texto con estadísticas
+básicas sobre los links.
+
+```sh
+$ md-links ./some/example.md --stats
+Total: 3
+Unique: 3
+```
+
+También podemos combinar `--stats` y `--validate` para obtener estadísticas que
+necesiten de los resultados de la validación.
+
+```sh
+$ md-links ./some/example.md --stats --validate
+Total: 3
+Unique: 3
+Broken: 1
+```
+## Ejecutable
+El módulo puede importarse en otros scripts de Node.js a travéz de:
+
+`require('md-links')`
+
+#### `mdLinks(path, options)`
+
+Argumentos
+
+`path`: Ruta absoluta o relativa al archivo o directorio
+`options`: Un objeto con las siguientes propiedades:
+`validate`: Booleano que determina si se desea validar los links encontrados.
+
+
+
+
+
+<!-- ## Objetivos
 
 El objetivo práctico de este proyecto es que aprendas cómo crear tu propia
 **librería** (o biblioteca - _library_) en JavaScript.
@@ -49,9 +119,9 @@ Tópicos: [Node.js](https://nodejs.org/en/),
 parsing,
 [markdown](https://daringfireball.net/projects/markdown/syntax), CLI,
 [npm-scripts](https://docs.npmjs.com/misc/scripts),
-[semver](https://semver.org/), ...
+[semver](https://semver.org/), ... -->
 
-## Consideraciones generales
+<!-- ## Consideraciones generales
 
 Este proyecto se debe "resolver" de manera individual.
 
@@ -89,9 +159,9 @@ considere necesarios.
 ### JavaScript API
 
 El módulo debe poder importarse en otros scripts de Node.js y debe ofrecer la
-siguiente interfaz:
+siguiente interfaz: -->
 
-#### `mdLinks(path, options)`
+<!-- #### `mdLinks(path, options)`
 
 ##### Argumentos
 
@@ -198,9 +268,9 @@ $ md-links ./some/example.md --stats --validate
 Total: 3
 Unique: 3
 Broken: 1
-```
+``` -->
 
-## Entregables
+<!-- ## Entregables
 
 Módulo instalable via `npm install <github-user>/md-links`. Este módulo debe
 incluir tanto un ejecutable como una interfaz que podamos importar con `require`
@@ -353,4 +423,4 @@ si tienes dudas existenciales con respecto a estas decisiones. No existe una
 
 - [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
   lines, y branches.
-- [ ] Pasa tests (y linters) (`npm test`).
+- [ ] Pasa tests (y linters) (`npm test`). -->

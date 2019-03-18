@@ -3,7 +3,7 @@ import {routeAbsolute, relativeToAbsolute, fileOrFolder, validMd, recurFolder, r
 
 const routeAbsEntered = '/home/fulano/imagen.jpg';
 const routeRelEntered = '~/imagen.jpg';
-const routeOfDeskpot = 'C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\~\\imagen.jpg';
+const routeOfDeskpot = `${process.cwd()}\\~\\imagen.jpg`;
 
 // describe('routeAbsolute', () => {
 //   // Los valores booleanos true y false, son por el método path.isAbsolute, el cual retorna valores booleanos.
@@ -26,34 +26,34 @@ describe('relativeToAbsolute', () => {
 // Recordar que los métodos retornan booleanos
 describe('fileOrFolder', () => {
   it('should validate it is a file or folder', () => {
-    const validateFile = fileOrFolder('C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links');
+    const validateFile = fileOrFolder(`${process.cwd()}`);
     expect(validateFile).toBe(false);
   });
   it('should validate it is a file or folder', () => {
-    const validateFile = fileOrFolder('C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src\\controll-func\\call-path.js');
+    const validateFile = fileOrFolder(`${process.cwd()}\\src\\controll-func\\call-path.js`);
     expect(validateFile).toBe(true);
   });
 });
 describe('validMd', () => {
   it('Debería regresar la ruta con la extención md', () => {
-    const validFileMd = validMd('C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src\\call-path.md');
+    const validFileMd = validMd(`${process.cwd()}\\src\\call-path.md`);
     expect(validFileMd).toEqual(true);
   });
   it('Debería regresar la ruta sin la extención md', () => {
-    const validFileMd = validMd('C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src\\call-path.js');
+    const validFileMd = validMd(`${process.cwd()}\\src\\call-path.js`);
     expect(validFileMd).toEqual(false);
   });
 });
 describe('recurFolder', () => {
   it('debería retornar un array de strings md', () => {
-    const returnStrings = recurFolder('C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src');
-    expect(returnStrings).toEqual([ 'C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src\\mds\\ejemplo\\ejemlo.md',
-      'C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src\\mds\\ejemplo\\texto.md' ]);
+    const returnStrings = recurFolder(`${process.cwd()}\\src`);
+    expect(returnStrings).toEqual([ `${process.cwd()}\\src\\mds\\ejemplo\\ejemlo.md`,
+      `${process.cwd()}\\src\\mds\\ejemplo\\texto.md` ]);
   });
 });
 // describe('readFile', () => {
 //   it('Debería retornar el contenido del archivo que es un string', () => {
-//     const returnReadFile = readFile('C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src\\mds\\ejemplo\\texto.md');
+//     const returnReadFile = readFile(`${process.cwd()}\\src\\mds\\ejemplo\\texto.md');
 //     expect(returnReadFile).toBe('# Markdown Links');
 //   });
 // });

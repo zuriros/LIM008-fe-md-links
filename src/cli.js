@@ -4,7 +4,7 @@ import {calculStats, linksBroken, unitCalcBrok} from './calcul-stats.js';
 import {validatingLinks} from './controll-func/valid-links.js';
 const prosArg = process.argv;
 // ['C:\\Program Files\\nodejs\\node.exe','C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\lib\\cli.js','user\route', option]
-console.log(prosArg);
+//  console.log(prosArg);
 
 export const cliFunc = (prosArg) => {
   return new Promise((resolve) => {
