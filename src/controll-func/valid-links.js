@@ -4,8 +4,8 @@ import {getTheLinks} from './extrac-links.js';
 const fetch = require('node-fetch');
 
 // Se crea la función que validará los links extraidos.
-export const validatingLinks = (pathArr) => {
-  const arrObjLinks = getTheLinks(pathArr);
+export const validatingLinks = (pathAbsFolder) => {
+  const arrObjLinks = getTheLinks(pathAbsFolder);
   const getAllLinks = arrObjLinks.map(linkObj => new Promise((resolve) => fetch(linkObj.href)
     // el then te dvuelve un objeto llamado response dentro de este se ubica a status(200) y statustext('ok')
     .then((res) => {
@@ -29,6 +29,5 @@ export const validatingLinks = (pathArr) => {
   return Promise.all(getAllLinks);
 };
 
-console.log(validatingLinks('C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src').then(sec => console.log(sec)));
 
- 
+// console.log(validatingLinks('C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src').then(sec => console.log(sec)));
