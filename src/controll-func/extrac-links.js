@@ -6,9 +6,9 @@ const fs = require('fs');
 import {recurFolder} from './call-path.js';
 
 // Se crea una función que extraerá los links.
-export const getTheLinks = (pathAbsFolder) => {
+export const getTheLinks = (pathAbsFilOrFold) => {
   let arrObjLinks = [];
-  const funcPathsArr = recurFolder(pathAbsFolder);
+  const funcPathsArr = recurFolder(pathAbsFilOrFold);
   const applyingRegEx = /(^|[^!])\[(.+)\]\((.+)\)/gm;
   funcPathsArr.forEach((pathFileMd) => {
     let fileMd = fs.readFileSync(pathFileMd).toString();

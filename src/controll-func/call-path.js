@@ -13,6 +13,7 @@ export const relativeToAbsolute = (reltvPath) => {
   let convertRelatRout = path.resolve(reltvPath);
   return convertRelatRout;
 };
+
 // creando función donde evaluaremos si es un archivo.
 export const fileOrFolder = (pathAbsolute) => {
   // convirtiendo la ruta que es string a un objeto(fs.statSync) para que node lo pueda leer y aplicamos los metodos isFile o isDirectory para validar.
@@ -25,25 +26,23 @@ export const validMd = (route) => {
   let extsnMd = path.extname(route);
   return extsnMd.toLowerCase() === '.md';
 };
-// En caso de que la función fileOrFolder resulte false creamos una función que recorra las carpetas.
-export const recurFolder = (pathAbsFolder) => {
-  // El método fs.readdirSync tiene la propiedad de leer al directorio
-  let readFolder = fs.readdirSync(pathAbsFolder);
-  // esto es un array de strings(archivos md)
+
+export const recurFolder = (pathAbsFilOrFold) => {
   let arrayString = [];
-  readFolder.forEach((nameFile) => {
-    const newRoute = path.join(pathAbsFolder, nameFile);
-    if (fileOrFolder(newRoute)) {
-      if (validMd(newRoute)) {
-        arrayString.push(newRoute);
-        // console.log(arrayString);
-      }
-    } else {
+  if (fileOrFolder(pathAbsFilOrFold)) {
+    if (validMd(pathAbsFilOrFold)) {
+      arrayString.push(pathAbsFilOrFold);
+    }    
+  } else {
+    let readFolder = fs.readdirSync(pathAbsFilOrFold);
+    readFolder.forEach((nameFileOrFolder) => {
+      const newRoute = path.join(pathAbsFilOrFold, nameFileOrFolder);
       arrayString = arrayString.concat(recurFolder(newRoute));
-    }
-  });
+    });
+  }
   return arrayString;
 };
+
 // // Se crea una función para leer los archivos md 
 // export const readFile = (pathMd) => {
 //   // Este método me retorna buffer(es un objeto; es una representción eficiente de arrays de datos en variedad de formatos )
@@ -62,3 +61,21 @@ export const recurFolder = (pathAbsFolder) => {
 // console.log(typeof(readFile('C:\\Users\\Laboratoria\\Documents\\LIM008-fe-md-links\\src\\mds\\ejemplo\\ejemlo.md')));
 
 
+// export const recurFolder = (pathAbsFolder) => {
+//   // El método fs.readdirSync tiene la propiedad de leer al directorio
+//   let readFolder = fs.readdirSync(pathAbsFolder);
+//   // esto es un array de strings(archivos md)
+//   let arrayString = [];
+//   readFolder.forEach((nameFile) => {
+//     const newRoute = path.join(pathAbsFolder, nameFile);
+//     if (fileOrFolder(newRoute)) {
+//       if (validMd(newRoute)) {
+//         arrayString.push(newRoute);
+//         // console.log(arrayString);
+//       }
+//     } else {
+//       arrayString = arrayString.concat(recurFolder(newRoute));
+//     }
+//   });
+//   return arrayString;
+// };

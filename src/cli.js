@@ -7,7 +7,7 @@ const prosArg = process.argv;
 //  console.log(prosArg);
 
 export const cliFunc = (prosArg) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     // La condición del if retorna un booleano, este caso se da cuando el usuario ingresa --v y --st
     if ((prosArg.includes('--validate') || prosArg.includes('--v')) && (prosArg.includes('--stats') || prosArg.includes('--s'))) {
       mdLinks(prosArg[2], {validate: true, stats: true}).then(showProm => resolve(unitCalcBrok(showProm)));
@@ -20,6 +20,6 @@ export const cliFunc = (prosArg) => {
     }
   });
 };
-
-cliFunc(process.argv).then(show => console.log(show));
+// 'C:\Users\Laboratoria\Documents\LIM008-fe-md-links\src\md-links.js' 
+  //  cliFunc(process.argv).then(show => console.log(show));
 
