@@ -2,7 +2,7 @@ import {getTheLinks} from '../src/controll-func/extrac-links.js';
 import {validatingLinks} from '../src/controll-func/valid-links.js';
 import {calculStats, linksBroken} from '../src/calcul-stats.js';
 import {mdLinks} from '../src/md-links.js';
-import {cliFunc} from '../src/cli.js';
+import {cliFunc} from '../src/controll-func/cli-func.js';
 const path = require('path');
 const linuxPath = path.resolve(`${process.cwd()}/src`);
 const objArrLink = [
