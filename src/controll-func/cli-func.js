@@ -8,11 +8,14 @@ export const cliFunc = (prosArg) => {
     if ((prosArg.includes('--validate') || prosArg.includes('--v')) && (prosArg.includes('--stats') || prosArg.includes('--s'))) {
       mdLinks(prosArg[2], {validate: true, stats: true}).then(showProm => resolve(unitCalcBrok(showProm)));
     } else if (prosArg.includes('--validate') || prosArg.includes('--v')) {
-      mdLinks(prosArg[2], {validate: true, stats: false}).then(showProm => resolve(showProm));
+      // const objToString = showProm.map((element) => `${element.file} ${element.href} ${element.status} ${element.statusText} ${element.text}`);
+
+      mdLinks(prosArg[2], {validate: true, stats: false}).then(showProm => resolve(showProm.map(element => (
+        `${element.file} ${element.href} ${element.status} ${element.statusText} ${element.text}`)).join('\n')));
     } else if (prosArg.includes('--stats') || prosArg.includes('--s')) {
       mdLinks(prosArg[2], {validate: false, stats: true}).then(showProm => resolve(calculStats(showProm)));
     } else {
-      mdLinks(prosArg[2], {validate: false, stats: false}).then(showProm => resolve(showProm));
+      mdLinks(prosArg[2], {validate: false, stats: false}).then(showProm => resolve(showProm.map(element => (`${element.file} ${element.href} ${element.text}`)).join('\n')));
     }
   });
 };
